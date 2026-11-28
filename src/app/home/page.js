@@ -1,5 +1,6 @@
 "use client"
 import { supabaseClient } from "@/lib/supabase"
+import { formatDistanceToNowStrict } from "date-fns";
 import { useEffect, useState } from "react"
 
 const Home = () => {
@@ -47,13 +48,14 @@ const Home = () => {
               <span className="text-sm font-medium leading-none">
                 {post.profile.username}
               </span>
+              <div>{formatDistanceToNowStrict(post.created_at, {addSuffix: true})}</div>
             </div>
 
             <img
               src={post.imageUrl}
               alt={post.caption || `Photo by ${post.profile.username}`}
-              width={300}
-              height={400}
+              
+              
               loading="lazy"
               className="aspect-[3/4] h-auto w-full border-y bg-muted object-cover"
             />
